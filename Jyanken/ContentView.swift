@@ -1,14 +1,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var name: String?
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            
+            if let n = name {
+                Image(n)
+            }
+            
+            Button(action: {
+                name = getRandomFile()
+            }, label: {
+                Text("じゃんけんをする")
+            })
         }
-        .padding()
+    }
+    
+    func getRandomFile() -> String {
+        let i = Int.random(in: 0...2)
+        let names:[String] = ["gu", "scissors", "paper"]
+        return names[i]
     }
 }
 
